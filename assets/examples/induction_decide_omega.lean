@@ -4,7 +4,7 @@ theorem sum_eq (n : Nat) : 2 * slowSum n = n * (n + 1) := by
   | zero => rfl
   | succ k ih =>
     simp only [slowSum, Nat.mul_add, ih]
-    simp only [Nat.mul_add, Nat.add_mul, Nat.mul_one, Nat.one_mul]
+    simp only [Nat.add_mul, Nat.mul_one, Nat.one_mul]
     omega
 theorem small1 : ∀ x : Fin 256, x.val % 8 = x.val &&& 7 := by decide +kernel
 theorem small2 : ∀ x : Fin 256, x.val % 8 = x.val &&& 7 := by
