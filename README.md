@@ -5,7 +5,7 @@ A [Claude Code](https://claude.com/claude-code) skill that uses the [Lean 4](htt
 - **Bug hunting**: find integer overflow, bit-manipulation, and boundary-condition bugs *with concrete counterexamples* (`bv_decide`).
 - **Safe optimization**: prove that an optimized or refactored version is equivalent to the naive one for **all** inputs.
 
-It targets small functions and single rewrite rules, not whole-program verification. It is language-agnostic (Rust, C, Go, TS, ...): you model the target in Lean, then translate any counterexample back to the original code.
+It targets small functions and single rewrite rules, not whole-program verification. It is language-agnostic (Rust, C, Go, TypeScript, ...): you model the target in Lean, then translate any counterexample back to the original code.
 
 ## Install
 
