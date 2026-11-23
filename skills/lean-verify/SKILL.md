@@ -1,5 +1,6 @@
 ---
 name: lean-verify
+license: MIT
 description: Use the Lean 4 theorem prover to find software bugs with counterexamples (integer overflow, bit manipulation, boundary conditions, spec/implementation mismatches) and to prove that an optimization or refactoring is equivalent to the original, so performance work can land safely. Also covers installing Lean and creating a minimal project. Use this skill proactively, even when Lean is not mentioned by name, when the user mentions Lean / lake / elan / formal verification / theorem proving / bv_decide / counterexample search / "is this optimization equivalent?" / "check that it holds for all inputs" / "find bugs tests can't catch" / "safely swap out a bit-twiddling or arithmetic trick", or wants to confirm the correctness of a peephole optimization, strength reduction, bounds-check elimination, or algorithm rewrite. Language-agnostic (Rust, C, Go, TS, ...).
 ---
 

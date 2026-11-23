@@ -9,10 +9,18 @@ It targets small functions and single rewrite rules, not whole-program verificat
 
 ## Install
 
-Clone into your Claude Code skills directory:
+With the GitHub CLI (`gh skill`, preview):
 
 ```bash
-git clone https://github.com/hirosassa/lean-verify ~/.claude/skills/lean-verify
+gh skill install hirosassa/lean-verify lean-verify
+# target a specific agent / scope if needed, e.g. --agent claude-code
+```
+
+Or clone manually:
+
+```bash
+git clone https://github.com/hirosassa/lean-verify /tmp/lean-verify
+cp -r /tmp/lean-verify/skills/lean-verify ~/.claude/skills/
 ```
 
 Lean itself is installed on demand by the skill (see `references/setup.md`), after asking you.
@@ -21,19 +29,19 @@ Lean itself is installed on demand by the skill (see `references/setup.md`), aft
 
 | Path | Contents |
 |---|---|
-| `SKILL.md` | Skill entry point: when to use it, workflow, modeling pitfalls |
-| `references/bug-hunting.md` | Counterexample-driven bug hunting |
-| `references/perf-equivalence.md` | Proving optimizations equivalent |
-| `references/tactics.md` | Tactic cheat sheet (core-only first) |
-| `references/setup.md` | Installing Lean / elan, minimal lake project |
-| `scripts/check_lean.sh` | Checks the Lean environment |
-| `assets/examples/` | Runnable Lean examples |
+| `skills/lean-verify/SKILL.md` | Skill entry point: when to use it, workflow, modeling pitfalls |
+| `skills/lean-verify/references/bug-hunting.md` | Counterexample-driven bug hunting |
+| `skills/lean-verify/references/perf-equivalence.md` | Proving optimizations equivalent |
+| `skills/lean-verify/references/tactics.md` | Tactic cheat sheet (core-only first) |
+| `skills/lean-verify/references/setup.md` | Installing Lean / elan, minimal lake project |
+| `skills/lean-verify/scripts/check_lean.sh` | Checks the Lean environment |
+| `skills/lean-verify/assets/examples/` | Runnable Lean examples |
 
 ## Try the examples
 
 ```bash
-lean assets/examples/induction_decide_omega.lean
-lean assets/examples/bv_overflow_and_strength_reduction.lean   # bad_ng is expected to fail with a counterexample
+lean skills/lean-verify/assets/examples/induction_decide_omega.lean
+lean skills/lean-verify/assets/examples/bv_overflow_and_strength_reduction.lean   # bad_ng is expected to fail with a counterexample
 ```
 
 ## License
