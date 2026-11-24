@@ -16,6 +16,13 @@ gh skill install hirosassa/lean-verify lean-verify
 # target a specific agent / scope if needed, e.g. --agent claude-code
 ```
 
+With [APM](https://microsoft.github.io/apm/) (Agent Package Manager):
+
+```bash
+apm install hirosassa/lean-verify
+# deploys to .claude/skills/lean-verify (and/or other detected agents); pin with --target claude
+```
+
 Or clone manually:
 
 ```bash

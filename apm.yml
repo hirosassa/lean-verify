@@ -1,0 +1,6 @@
+name: lean-verify
+version: 1.0.0
+description: Use the Lean 4 theorem prover to find bugs with counterexamples and prove optimizations equivalent.
+author: hirosassa
+license: MIT
+type: skill
