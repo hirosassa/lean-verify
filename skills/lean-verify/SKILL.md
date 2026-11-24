@@ -25,7 +25,7 @@ If the target is a poor fit, don't force it into Lean. Say so and propose anothe
 
 ## Workflow
 
-1. **Check the environment** → run `scripts/check_lean.sh`. If Lean is missing, follow `references/setup.md` (ask the user before installing).
+1. **Check the environment** → run `scripts/check_lean.sh`. If Lean is missing, follow `references/setup.md` (ask the user before installing). If plausible looks necessary (searching for properties over structured data such as lists), read the `plausible:` line of the output: `available` means use it, `not installed` means follow `references/setup.md` §4 (ask the user first). Don't propose it when `bv_decide` or `#eval` can do the job (fixed-width integers, small finite domains).
 2. **Narrow the target**: verify one function or one rewrite rule. Split anything larger.
 3. **Model it**: translate the target into Lean definitions. Watch for semantic differences (see "Modeling pitfalls" below).
 4. **State the property**: for bug hunting, the property the code *should* satisfy; for optimization, `fast x = slow x`.
@@ -72,7 +72,7 @@ Rewrites of recursion or loops use induction. Details in `references/perf-equiva
 
 ## Known limitations (hit in practice)
 
-- `Plausible` (property-based testing) is **not part of core**. Add `plausible` to the `lake` project's `[[require]]` (see `references/setup.md`). For a single file, an exhaustive `#eval` search can stand in.
+- `Plausible` (property-based testing) is **not part of core**. If `check_lean.sh` reports `plausible: not installed` and you need it, ask the user for permission before adding it (it edits `lakefile.toml` and downloads from the network; see `references/setup.md` §4). Never add it unasked. If the user declines, or for a single file, an exhaustive `#eval` search can stand in.
 - `ring_nf` / `nlinarith` / `linarith` and friends are **Mathlib-only**. To stay within core, use `simp only [Nat.add_mul, ...]` + `omega`. Mathlib's first build is heavy, so don't add it until it is needed.
 - Using `decide` for an exhaustive search as small as `Fin 256` can hit the recursion limit. Use `decide +kernel` or `set_option maxRecDepth N in decide`.
 - The first `lean` run downloads the toolchain and can take minutes, and concurrent elan invocations wait on a lock. Watch for timeouts and use background execution.
