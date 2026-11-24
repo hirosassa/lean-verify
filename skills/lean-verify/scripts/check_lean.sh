@@ -22,3 +22,27 @@ if command -v timeout >/dev/null 2>&1; then
 else
   lean --version
 fi
+
+# Plausible is a lake dependency, not part of core. Report whether this project can use it.
+# Lines starting with "plausible:" are machine-readable: available / not installed / unavailable (single-file mode).
+root="$PWD"
+while [ ! -f "$root/lakefile.toml" ] && [ ! -f "$root/lakefile.lean" ]; do
+  [ "$root" = "/" ] && { root=""; break; }
+  root="$(dirname "$root")"
+done
+
+if [ -z "$root" ]; then
+  echo "Single-file mode: no lakefile found, so plausible cannot be used."
+  echo "plausible: unavailable (single-file mode)"
+elif [ -d "$root/.lake/packages/plausible" ]; then
+  echo "lake project: $root"
+  echo "plausible: available"
+else
+  echo "lake project: $root"
+  if grep -qs plausible "$root/lakefile.toml" "$root/lakefile.lean"; then
+    echo "plausible is declared in the lakefile but not resolved yet (needs 'lake update', ask the user first)."
+  else
+    echo "plausible is not in the lakefile. Adding it needs the user's permission (see references/setup.md §4)."
+  fi
+  echo "plausible: not installed"
+fi
